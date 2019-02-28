@@ -179,7 +179,6 @@ CREATE TABLE `overtime` (
 --
 -- Table structure for table `position`
 --
-
 CREATE TABLE `position` (
   `id` int(11) NOT NULL,
   `description` varchar(150) NOT NULL,
@@ -219,14 +218,28 @@ INSERT INTO `schedules` (`id`, `time_in`, `time_out`) VALUES
 --
 -- Indexes for dumped tables
 --
+-- Table structure for table `pds`
+--
 
+CREATE TABLE `pds` (
+  `id` int(11) NOT NULL,
+  `firstname` varchar(50) NOT NULL,
+  `lastname` varchar(50) NOT NULL,
+  `address` text NOT NULL,
+  `birthdate` date NOT NULL,
+  `contact_info` varchar(100) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `admin_id` int(11) NOT NULL,
+  `created_on` date NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 --
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
-
+-- Indexes for table `admin`
 --
+
 -- Indexes for table `attendance`
 --
 ALTER TABLE `attendance`
@@ -271,7 +284,10 @@ ALTER TABLE `schedules`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+ALTER TABLE `pds`
+  ADD PRIMARY KEY (`id`);
 
+--
 --
 -- AUTO_INCREMENT for table `admin`
 --
@@ -318,6 +334,11 @@ ALTER TABLE `position`
 -- AUTO_INCREMENT for table `schedules`
 --
 ALTER TABLE `schedules`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
+--
+ALTER TABLE `pds`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 

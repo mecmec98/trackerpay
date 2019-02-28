@@ -1,5 +1,6 @@
 <?php
 	include 'includes/session.php';
+	$admin_id = $_SESSION['admin'];
 
 	if(isset($_POST['add'])){
 		$firstname = $_POST['firstname'];
@@ -10,6 +11,9 @@
 		$gender = $_POST['gender'];
 		$position = $_POST['position'];
 		$schedule = $_POST['schedule'];
+		$password = $_POST['password'];
+		$hash = password_hash($password, PASSWORD_DEFAULT);
+
 		$filename = $_FILES['photo']['name'];
 		if(!empty($filename)){
 			move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);	
@@ -25,9 +29,15 @@
 		}
 		$employee_id = substr(str_shuffle($letters), 0, 3).substr(str_shuffle($numbers), 0, 9);
 		//
-		$sql = "INSERT INTO employees (employee_id, firstname, lastname, address, birthdate, contact_info, gender, position_id, schedule_id, photo, created_on) VALUES ('$employee_id', '$firstname', '$lastname', '$address', '$birthdate', '$contact', '$gender', '$position', '$schedule', '$filename', NOW())";
+		$sql = "INSERT INTO employees (employee_id, firstname, lastname, address, birthdate, contact_info, gender, position_id, schedule_id, photo, created_on, admin_id) VALUES ('$employee_id', '$firstname', '$lastname', '$address', '$birthdate', '$contact', '$gender', '$position', '$schedule', '$filename', NOW(), '$admin_id')";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Employee added successfully';
+			$sql = "SELECT * FROM employees WHERE firstname = '$firstname' AND lastname = '$lastname'";
+			$query = $conn->query($sql);
+			$row = $query->fetch_assoc();
+			$username = $row['employee_id'];
+			$sql = "INSERT INTO admin (username, password, firstname, lastname, photo, created_on, type) VALUES ('$username', '$hash', '$firstname', '$lastname', '$filename', NOW(), 3)";
+			$conn->query($sql);
 		}
 		else{
 			$_SESSION['error'] = $conn->error;

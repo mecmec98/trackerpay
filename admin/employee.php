@@ -64,6 +64,8 @@
                   <?php
                     $sql = "SELECT *, employees.id AS empid FROM employees LEFT JOIN position ON position.id=employees.position_id LEFT JOIN schedules ON schedules.id=employees.schedule_id";
                     $query = $conn->query($sql);
+                    $row = $query->fetch_assoc();
+                    if ($row['admin_id'] == $_SESSION['admin']){
                     while($row = $query->fetch_assoc()){
                       ?>
                         <tr>
@@ -80,6 +82,7 @@
                           </td>
                         </tr>
                       <?php
+                    }
                     }
                   ?>
                 </tbody>

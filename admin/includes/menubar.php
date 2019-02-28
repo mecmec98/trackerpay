@@ -43,9 +43,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-		  
+		  <?php if ($type == 1 or $type == 2){ ?>
             <li><a href="employee.php"><i class="fa fa-circle"></i> Employee List</a></li>
 			<li><a href="attendance.php"><i class="fa fa-circle"></i> <span>Attendance</span></a></li>
+      <?php } ?>
 			<li><a href="schedule_employee.php"><i class="fa fa-circle"></i> <span>Schedule</span></a></li>
 			<li><a href="deduction.php"><i class="fa fa-circle"></i> Deductions</a></li>
             <li><a href="overtime.php"><i class="fa fa-circle"></i> Overtime</a></li>
@@ -66,11 +67,13 @@
 		
 		  <?php
         }
+        if ($type == 1 or $type == 2){
         ?>
-		
+		    
         <li class="header">PRINTABLES</li>
         <li><a href="payroll.php"><i class="fa fa-files-o"></i> <span>Payroll</span></a></li>
       <?php
+      }
           if ($type == 1){
 
 

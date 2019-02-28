@@ -7,7 +7,10 @@
     $year = $_GET['year'];
   }
 ?>
-<?php include 'includes/header.php'; ?>
+<?php 
+include 'includes/header.php'; 
+$type = $_SESSION['type'];
+?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -52,6 +55,8 @@
         }
       ?>
       <!-- Small boxes (Stat box) -->
+     
+      <?php if ($type == 1 or $type == 2){ ?>
       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
@@ -62,6 +67,8 @@
                 $query = $conn->query($sql);
 
                 echo "<h3>".$query->num_rows."</h3>";
+
+                
               ?>
 
               <p>Total Employees</p>
@@ -141,6 +148,7 @@
         </div>
         <!-- ./col -->
       </div>
+    <?php } ?>
       <!-- /.row -->
       <div class="row">
         <div class="col-xs-12">
@@ -190,7 +198,24 @@
   $months = array();
   $ontime = array();
   $late = array();
+
+  $myid = $_SESSION['admin'];
+    $sql = "SELECT *, admin.id AS adid 
+    FROM admin 
+    LEFT JOIN employees ON admin.username=employees.employee_id
+    AND admin.id = $myid";
+    $query = $conn->query($sql);
+    $row = $query->fetch_assoc();
+    //echo '<pre>';
+    //var_dump($row);
+    //echo '</pre>';
+    $employeeid = $row['id'];
+    
+
+  
   for( $m = 1; $m <= 12; $m++ ) {
+    if ($type == 1 or $type == 2){
+    
     $sql = "SELECT * FROM attendance WHERE MONTH(date) = '$m' AND status = 1 $and";
     $oquery = $conn->query($sql);
     array_push($ontime, $oquery->num_rows);
@@ -202,6 +227,27 @@
     $num = str_pad( $m, 2, 0, STR_PAD_LEFT );
     $month =  date('M', mktime(0, 0, 0, $m, 1));
     array_push($months, $month);
+    
+    }elseif ($type == 3){
+
+
+    $sql = "SELECT * FROM attendance WHERE MONTH(date) = '$m' AND status = 1 $and
+    AND employee_id = $employeeid";
+    $oquery = $conn->query($sql);
+    array_push($ontime, $oquery->num_rows);
+
+    $sql = "SELECT * FROM attendance WHERE MONTH(date) = '$m' AND status = 0 $and
+    AND employee_id = $employeeid";
+    $lquery = $conn->query($sql);
+    array_push($late, $lquery->num_rows);
+
+    $num = str_pad( $m, 2, 0, STR_PAD_LEFT );
+    $month =  date('M', mktime(0, 0, 0, $m, 1));
+    array_push($months, $month);
+    
+
+    }
+
   }
 
   $months = json_encode($months);

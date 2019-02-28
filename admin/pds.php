@@ -15,7 +15,8 @@
         <li class="active">Personal Data Sheet </li>
       </ol>
 		<br><br>
-
+    <form action="pds_add.php" method="POST">
+      <input type = submit>
 		<section class="contentSection right clearfix">
 		<div class="displaySuccess"></div>
 		<link rel="stylesheet" href="css.css">
@@ -32,12 +33,12 @@
     <table class="table"
       <tbody>
         <tr>
-          <td class="tbl">SURNAME </td><td><input type="text" name="SURNAME"></td><BR>
+          <td class="tbl">SURNAME* </td><td><input type="text" name="lastname"></td><BR>
 		  
         </tr>
 		
         <tr>
-          <td class="tbl">FIRSTNAME</td><td><input type="text" name="FIRSTNAME"></td>
+          <td class="tbl">FIRSTNAME*</td><td><input type="text" name="firstname"></td>
 
         </tr>
 		
@@ -50,9 +51,9 @@
         </tr>
         <tr>
 		
-          <td class="tbl">DATE OF BIRTH</td><td><input type="text"name="NAME EXTENSION"></td>
+          <td class="tbl">DATE OF BIRTH</td><td><input type="date" name="birthday"></td>
 		
-          <td class="tbl" rowspan="2">RESIDENTIAL ADDRESS</td><td><input type="text" name="RESIDENTIAL ADDRESS"></td>
+          <td class="tbl" rowspan="2">RESIDENTIAL ADDRESS</td><td><input type="text" name="address1"></td>
          
 		  
         </tr>
@@ -61,10 +62,10 @@
 		  <td></td>
         </tr>
         <tr>
-          <td class="tbl">SEX</td>
+          <td class="tbl">SEX*</td>
 		   <td class="answer">
-		   <input type="checkbox" value="" name="b41"/> Male
-            <input type="checkbox" value="" name="b41"/> Female
+		   <input type="radio" name="gender" value="male"> Male<br>
+      <input type="radio" name="gender" value="female"> Female<br>
 		  
 		  
 		  
@@ -83,14 +84,14 @@
 			<input type="checkbox" value="" name="b41"/> Separated
             <input type="checkbox" value="" name="b41"/> Others,Specify  ___________
           
-          <td class="tbl">TELEPHONE NO.</td><td><input type="NUMBER" name="TELEPHONENO."></td>
+          <td class="tbl">TELEPHONE NO.*</td><td><input type="NUMBER" name="contact"></td>
           
         </tr>
         <tr>
           <td class="tbl">CITIZENSHIP</td><td><input type="text" name="CITIZENSHIP"></td>
          
-          <td class="tbl" rowspan="2">PERMANENT ADDRESS</td><td><input type="text" name="PERMANENT ADDRESS"></td>
-		 
+          <td class="tbl" rowspan="2">PERMANENT ADDRESS*</td><td><input type="text" name="address2"></td>
+		 </form>
         </tr>
         <tr>
           <td class="tbl">HEIGHT(m)</td><td><input type="number" name="height"></td>
