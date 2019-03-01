@@ -37,7 +37,7 @@
 									<li><a href="#">About</a></li>
 									<li><a href="#">Contact</a></li>
 									<li><a href="Registration1.php">Register</a></li>
-									<li><a href="http://localhost/apsystem/employee/index.php">Log In</a></li>
+									<li><a href="http://localhost/apsystem/admin/index.php">Log In</a></li>
 									
 								</ul>
 							</nav>
