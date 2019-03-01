@@ -9,6 +9,33 @@
           	</div>
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="employee_add.php" enctype="multipart/form-data">
+
+                 <div class ="form-group">
+                 <div class="col-sm-9">
+
+
+                      <select class="form-control" id="psd" name="psd" onchange="selectpsd()" required >
+                        <option value="" selected>- Select Registered Recruits-</option>
+                        <?php
+                          $sql = "SELECT * FROM pds";
+                          $query = $conn->query($sql);
+                          while($srow = $query->fetch_assoc()){
+                            echo "
+                              <option value='".$srow['id']."'>".$srow['firstname'].' '.$srow['lastname']."</option>
+                            ";
+                          }//END WHILE
+                        ?>
+
+
+                      </select>
+                      
+
+                       
+
+                    </div>
+                  </div>
+
+
           		  <div class="form-group">
                   	<label for="firstname" class="col-sm-3 control-label">Firstname</label>
 
@@ -302,3 +329,11 @@
         </div>
     </div>
 </div>    
+
+<script>
+document.getElementById("psd").onchange = function() {
+  var e = document.getElementById("psd");
+  var firstname = e.options[e.selectedIndex].value;
+  document.getElementById("firstname").value = firstname;
+};
+</script>

@@ -35,6 +35,8 @@ CREATE TABLE `admin` (
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `photo` varchar(200) NOT NULL,
+  `email` varchar(200),
+  `company` varchar(200),
   `created_on` date NOT NULL,
   `type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

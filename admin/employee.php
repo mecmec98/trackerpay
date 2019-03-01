@@ -62,10 +62,12 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT *, employees.id AS empid FROM employees LEFT JOIN position ON position.id=employees.position_id LEFT JOIN schedules ON schedules.id=employees.schedule_id";
+                    $adminid = $_SESSION['admin'];
+                    $sql = "SELECT *, employees.id AS empid FROM employees LEFT JOIN position ON position.id=employees.position_id LEFT JOIN schedules ON schedules.id=employees.schedule_id WHERE employees.admin_id = $adminid";
                     $query = $conn->query($sql);
-                    $row = $query->fetch_assoc();
-                    if ($row['admin_id'] == $_SESSION['admin']){
+                    //$row = $query->fetch_assoc();
+                    //if ($row['admin_id'] == $_SESSION['admin']){
+                    //echo '<h1>',$_SESSION['admin'],'</h1>'; and $row['admin_id'] == $_SESSION['admin']
                     while($row = $query->fetch_assoc()){
                       ?>
                         <tr>
@@ -83,7 +85,7 @@
                         </tr>
                       <?php
                     }
-                    }
+                   // }
                   ?>
                 </tbody>
               </table>
