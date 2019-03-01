@@ -18,9 +18,10 @@ include 'conn.php';
 		$sql = "INSERT INTO admin (username, password, firstname, lastname, photo, email, company, created_on, type) VALUES ('$username', '$hash', '$firstname', '$lastname', '$filename', '$email', '$company', NOW(), 2)";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Employee added successfully';
-			echo '<div class="alert alert-success">Sucess</div>';
+			        echo "<script type='text/javascript'>alert('submitted successfully!')</script>";
 
-				header('location: index.php'); 
+
+				header('location: success.php'); 
 			
 		}
 		else{
